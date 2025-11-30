@@ -32,6 +32,8 @@ public class Main {
             System.out.println("Введите ваше предположение (или \"exit\" для выхода):");
             input = inputUser();
 
+            countTry ++;
+
             if (input.equalsIgnoreCase("exit")){
                 System.out.println("Спасибо за игру!");
                 break;
@@ -53,10 +55,6 @@ public class Main {
                 countTry = 0;
                 random();
             }
-
-            countTry ++;
-
-
         }
     }
 }
