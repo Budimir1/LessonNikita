@@ -1,3 +1,5 @@
+package randomNumber;
+
 import java.util.Scanner;
 
 public class Main {
@@ -5,7 +7,7 @@ public class Main {
     public static int number;
     public static int randomNum;
     public static int countTry = 0;
-    public  static String text, y, n;
+    public  static String input;
 
     public static int random() {
         int min = 1;
@@ -16,16 +18,10 @@ public class Main {
 
     }
 
-    public static int inputUser() {
+    public static String inputUser() {
         Scanner th = new Scanner(System.in);
-        number = th.nextInt();
-        return number;
-    }
-
-    public static String userInput() {
-        Scanner th = new Scanner(System.in);
-        text = th.nextLine();
-        return text;
+        input = th.nextLine();
+        return input;
     }
 
     public static void main(String[] args) {
@@ -34,12 +30,19 @@ public class Main {
 
         while (true) {
             System.out.println("Введите ваше предположение (или \"exit\" для выхода):");
-            inputUser();
+            input = inputUser();
 
-//            if (userInput().equalsIgnoreCase("exit")) {
-//                System.out.println("Спасибо за игру!");
-//                System.exit(0);
-//            }
+            if (input.equalsIgnoreCase("exit")){
+                System.out.println("Спасибо за игру!");
+                break;
+            }
+
+            try {
+                number = Integer.parseInt(input);
+            }catch (NumberFormatException e){
+                System.out.println("Пожалуйста, введите число или 'exit'");
+                continue;
+            }
 
             if (number < randomNum) {
                 System.out.println("Слишком маленькое число, попробуй снова.");
@@ -47,6 +50,7 @@ public class Main {
                 System.out.println("Слишком большое число, попробуй снова.");
             } else {
                 System.out.println("Поздравляю! Вы угадали число " + randomNum + " Вы совешили " + countTry + " попыток");
+                countTry = 0;
                 random();
             }
 
