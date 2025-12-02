@@ -15,7 +15,6 @@ public class Main {
         int range = (max - min) + 1;
         randomNum = (int) ((range * Math.random() + min));
         return randomNum;
-
     }
 
     public static String inputUser() {

@@ -2,7 +2,7 @@ package calculator;
 
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
     public static String operator = operation();
     public static String text;
