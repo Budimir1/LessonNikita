@@ -20,6 +20,7 @@ public class Main {
                 wordCount.put(Word, 1);
             }
         }
+        System.out.println(wordCount);
 
         for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
             if (entry.getValue() > 1) {
