@@ -20,6 +20,8 @@ public class Main {
                 wordCount.put(Word, 1);
             }
         }
+
+        System.out.println("Результат подсчёта слов:");
         System.out.println(wordCount);
 
         for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
