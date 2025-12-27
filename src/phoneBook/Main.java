@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    private static String name;
+
     public static class Book {
         public int id;
-        public String name;
-        public String phoneNumber;
-        public String email;
+        public static String name;
+        public static String phoneNumber;
+        public static String email;
 
         public Book(int id, String name, String phoneNumber, String email) {
             this.id = id;
@@ -34,7 +36,7 @@ public class Main {
         }
         @Override
         public String toString(){
-            return "Book ID" + id + "Name" + name + "PhoneNumber" + phoneNumber + "email" + email;
+            return "Book ID " + id + " Name " + name + " PhoneNumber " + phoneNumber + " email " + email;
         }
     }
 
@@ -57,10 +59,10 @@ public class Main {
             scanner.nextLine();
 
             switch (action){
-                case 1: addBook; break;
-                case 2: deleteBook; break;
-                case 3: serchName; break;
-                case 4: vievsBook; break;
+                case 1: addBook(); break;
+                case 2: deleteBook(); break;
+                case 3: serchName(); break;
+                case 4: viewsBook(); break;
                 case 0: System.out.println("Thank you for using the To-Do List!");; break;
                 default:
                     System.out.println("Invalid option. Please try again.");
@@ -70,7 +72,40 @@ public class Main {
 
     private static void addBook(){
         System.out.println("Ку-ку!");
-        String book = scanner.nextLine();
-        books.add(new Book(nextId++, name, phoneNumber, ));
+        System.out.println("Введите имя контакта: ");
+        String name = scanner.nextLine();
+        System.out.println("Введите номер телефлона: ");
+        String numTp = scanner.nextLine();
+        System.out.println("Введите чё нибудь");
+        String email = scanner.nextLine();
+        books.add(new Book(nextId++, name, numTp,email));
+        System.out.println("Ты это болше не создавай памяти мало)))");
+    }
+
+    private static void deleteBook(){
+        System.out.println("Выбери контак который хочешь удалить: " + nextId);
+        int num = scanner.nextInt();
+        boolean removed = books.removeIf(book -> book.getId()  == num);
+        if (removed) {
+            System.out.println("Контак удалён");
+        }else System.out.println("Такого контакта нет)");
+    }
+
+    private static void serchName(){
+        System.out.println("Напишите имя контакта для его поиска: ");
+        String name = scanner.nextLine();
+        boolean bb = false;
+        for (Book book : books) {
+            if(book.getName().equalsIgnoreCase(name)){
+            bb = true;
+            }
+        }
+        if(!bb){
+            System.out.println("ffsg");
+        }
+    }
+    private static void viewsBook(){
+        System.out.println("Просмотр всех контактов: ");
+        System.out.println(books);
     }
 }
