@@ -1,98 +1,78 @@
 package cardGame;
 
-import java.util.*;
 import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class CardGame {
-
-
-    public static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<String> allCards = new ArrayList();
     public static String[] cardMasty = {"♥", "♦", "♠", "♣"};
     public static String[] numCard = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-    public static Stack<String> cardDeck(){
-        for (String masty: cardMasty) {
-            for (String num: numCard) {
+    public static List<String> allCards = new ArrayList<>();
+    private static GameGUI gameGUI;
+
+    public static Stack<String> cardDeck() {
+        allCards.clear();
+        for (String masty : cardMasty) {
+            for (String num : numCard) {
                 allCards.add(masty + num);
             }
         }
         Collections.shuffle(allCards);
 
         Stack<String> deck = new Stack<>();
-
-        for (String card: allCards) {
-            deck.push(card);
-        }
-
-        System.out.println(deck);
-        System.out.println(deck.size());
+        deck.addAll(allCards);
 
         return deck;
     }
 
-
-    public static Player profile(){
-        System.out.println("Введите имя");
-        String name = scanner.nextLine();
+    public static Player createPlayer() {
+        String name = JOptionPane.showInputDialog(null, "Введите имя игрока:",
+                "Создание игрока", JOptionPane.QUESTION_MESSAGE);
+        if (name == null || name.trim().isEmpty()) {
+            name = "Игрок " + (gameGUI.getPlayers().size() + 1);
+        }
         return new Player(name);
     }
 
-    public static void cards(Stack<String> deck, Player player, int numOfCards){
+    public static void dealCards(Stack<String> deck, Player player, int numOfCards) {
         for (int i = 0; i < numOfCards; i++) {
-            if (!deck.empty()) {
+            if (!deck.isEmpty()) {
                 player.addCard(deck.pop());
             }
         }
     }
 
-
-    public static void changeCards(List <Player> players){
-        cardDeck();
+    public static void newGame(List<Player> players) {
+        Stack<String> deck = cardDeck();
         for (Player player : players) {
             player.resetHand();
+            dealCards(deck, player, 5);
         }
-        System.out.println("Игра сброшена. Новая колода и карты сброшены у игроков.");
+        gameGUI.updateGameState();
+        JOptionPane.showMessageDialog(null, "Новая игра началась!");
     }
 
-
-
-
-
     public static void main(String[] args) {
-        Stack<String> deck = cardDeck();
-        Player player = profile();
-        cards(deck, player, 5);
+        SwingUtilities.invokeLater(() -> {
+            gameGUI = new GameGUI();
+            gameGUI.setVisible(true);
 
-        Player player2 = profile();
-        cards(deck, player2, 5);
+            // Создаем начальных игроков
+            Player player1 = createPlayer();
+            Player player2 = createPlayer();
 
+            Stack<String> deck = cardDeck();
+            dealCards(deck, player1, 5);
+            dealCards(deck, player2, 5);
 
-        JFrame frame = new JFrame("Игрове поле");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
+            gameGUI.addPlayer(player1);
+            gameGUI.addPlayer(player2);
+            gameGUI.updateGameState();
+        });
+    }
 
-        JButton play = new JButton("Игрок: " + player.getName());
-        JButton comp = new JButton("Компьютер:  " + player2.getName());
-
-        JPanel panel = new JPanel();
-        panel.add(play);
-        panel.add(comp);
-
-        frame.getContentPane().add(panel);
-
-        frame.setVisible(true);
-
-
-//        System.out.println(player.getName());
-//        System.out.println(player.getHand());
-//
-//
-//        System.out.println(player2.getName());
-//        System.out.println(player2.getHand());
-
-
-//        ArrayList <Player> players = new ArrayList<>();
-//        players.add(profile());
-//        changeCards(players);
+    public static GameGUI getGameGUI() {
+        return gameGUI;
     }
 }
