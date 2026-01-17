@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LogicGame {
 
-    public String trumpСard(CardGame mast){
+    public void trumpСard(CardGame mast){
         Collections.shuffle(List.of(mast.cardMasty));
     }
 }

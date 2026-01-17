@@ -53,7 +53,6 @@ public class Casino {
 
 
 
-
     public static void main(String[] args) {
 
         System.out.println("Здарова лудик! \nХочешь поиграть, тогда плати... \nПопытка 1 рубль\n");

@@ -4,6 +4,8 @@ import java.util.*;
 import javax.swing.*;
 
 public class CardGame {
+
+
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<String> allCards = new ArrayList();
     public static String[] cardMasty = {"♥", "♦", "♠", "♣"};
@@ -43,6 +45,7 @@ public class CardGame {
         }
     }
 
+
     public static void changeCards(List <Player> players){
         cardDeck();
         for (Player player : players) {
@@ -60,16 +63,36 @@ public class CardGame {
         Player player = profile();
         cards(deck, player, 5);
 
-        System.out.println(player.getName());
-        System.out.println(player.getHand());
-
         Player player2 = profile();
         cards(deck, player2, 5);
-        System.out.println(player2.getName());
-        System.out.println(player2.getHand());
 
-        ArrayList <Player> players = new ArrayList<>();
-        players.add(profile());
-        changeCards(players);
+
+        JFrame frame = new JFrame("Игрове поле");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 200);
+
+        JButton play = new JButton("Игрок: " + player.getName());
+        JButton comp = new JButton("Компьютер:  " + player2.getName());
+
+        JPanel panel = new JPanel();
+        panel.add(play);
+        panel.add(comp);
+
+        frame.getContentPane().add(panel);
+
+        frame.setVisible(true);
+
+
+//        System.out.println(player.getName());
+//        System.out.println(player.getHand());
+//
+//
+//        System.out.println(player2.getName());
+//        System.out.println(player2.getHand());
+
+
+//        ArrayList <Player> players = new ArrayList<>();
+//        players.add(profile());
+//        changeCards(players);
     }
 }
