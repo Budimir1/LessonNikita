@@ -14,7 +14,7 @@ public class Player {
 
     public String getName() {
         return name;
-    } //thhewrtheyjrty
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -22,16 +22,22 @@ public class Player {
 
     public List<String> getHand() {
         return hand;
-    } //hrtwhrtht
+    }
 
     public void setHand(List<String> hand) {
         this.hand = hand;
     }
 
-    public void addCard(String card){
+    public void addCard(String card) {
         hand.add(card);
-    } //gfhgfhrgfhgf
+    }
+
     public void resetHand() {
         hand.clear();
+    }
+
+    @Override
+    public String toString() {
+        return name + " (карт: " + hand.size() + ")";
     }
 }
