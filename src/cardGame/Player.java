@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private String name;
     private List<String> hand;
+    public String name;
+    public static List<String> card;
 
     public Player(String name) {
         this.name = name;
         this.hand = new ArrayList<>();
+    }
+
+    public List<String> getHand() {
+        return hand;
     }
 
     public String getName() {
@@ -20,24 +25,21 @@ public class Player {
         this.name = name;
     }
 
-    public List<String> getHand() {
-        return hand;
+    public static List<String> getCardHand() {
+        return card;
     }
 
-    public void setHand(List<String> hand) {
-        this.hand = hand;
+    public void setCardHand(List<String> cardHand) {
+        this.card = cardHand;
     }
+
+
+    public void resetHand() {
+        hand.clear(); // Очистка руки
+    }
+
 
     public void addCard(String card) {
         hand.add(card);
-    }
-
-    public void resetHand() {
-        hand.clear();
-    }
-
-    @Override
-    public String toString() {
-        return name + " (карт: " + hand.size() + ")";
     }
 }
