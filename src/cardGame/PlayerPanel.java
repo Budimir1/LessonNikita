@@ -80,6 +80,7 @@ public class PlayerPanel extends JPanel {
         bottomLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         panel.add(bottomLabel, BorderLayout.SOUTH);
 
+
         panel.setToolTipText(card);
 
         return panel;

@@ -12,30 +12,54 @@ public class GameGUI extends JFrame {
     private JPanel playersPanel;
     private JPanel controlPanel;
     private JLabel deckInfoLabel;
+    public JLabel deckPanel;
+    public JLabel trumpCard;
     private List<PlayerPanel> playerPanels;
     private List<Player> players;
     private Random random;
     private ArrayList<ImageIcon> cardImages;
     private JLabel cardLabel;
     private JDialog throwCardDialog;
-
+    private double theta;
+//
+                        @Override
+                        public void paintComponent(Graphics deckPanel) {
+                            Graphics2D gx = (Graphics2D) deckPanel;
+                            gx.rotate(0.6, getX() + getWidth()/2, getY() + getHeight()/2);
+                            super.paintComponent(deckPanel);
+                        }
+//
     public GameGUI() {
         players = new ArrayList<>();
         playerPanels = new ArrayList<>();
 
         setTitle("Карточная Игра");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
         setSize(1000, 700);
 
         // Создаем основную панель
         mainPanel = new JPanel(new BorderLayout());
+//
+                                // отображения колоды
+                                deckPanel = new JLabel((Icon) cardLabel);
+                                trumpCard = new JLabel((Icon) cardLabel);
 
-        // Панель информации о колоде
-        JPanel infoPanel = new JPanel();
-        deckInfoLabel = new JLabel("Карт в колоде: 52");
-        infoPanel.add(deckInfoLabel);
-        mainPanel.add(infoPanel, BorderLayout.NORTH);
+
+
+                                // Панель информации о колоде
+                                JPanel infoPanel = new JPanel();
+                                deckInfoLabel = new JLabel("Карт в колоде: 52");
+                                infoPanel.add(deckInfoLabel);
+                                mainPanel.add(infoPanel, BorderLayout.NORTH);
+
+
+                                protected void deckPane(Graphics deckPanel) {
+                                    Graphics2D g2 = (Graphics2D deckPanel);
+                                    g2.rotate(theta);
+                                    super.paintComponent(g2);
+                                    g2.rotate(-theta);
+                                }
+//
 
         // Панель игроков
         playersPanel = new JPanel(new GridLayout(0, 1, 10, 10));
@@ -72,6 +96,8 @@ public class GameGUI extends JFrame {
 
         initializeThrowCardSystem();
     }
+
+
 
     private void initializeThrowCardSystem() {
         random = new Random();
