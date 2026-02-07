@@ -147,7 +147,7 @@ public class GameGUI extends JFrame {
 
         // Кнопка для окна подкидывания карт
         JButton throwCardWindowButton = new JButton("Подкинуть карту");
-        throwCardWindowButton.addActionListener(e -> openThrowCardDialog());
+//        throwCardWindowButton.addActionListener(e -> openThrowCardDialog());
 
         // Кнопка для очистки стола
         JButton clearTableButton = new JButton("Очистить стол");
@@ -165,7 +165,7 @@ public class GameGUI extends JFrame {
         setLocationRelativeTo(null);
 
         // Инициализация для подкидывания карт
-        initializeThrowCardSystem();
+//        initializeThrowCardSystem();
 
         // Начальная и козырь
         initializeDeckAndTrump();
@@ -335,56 +335,56 @@ public class GameGUI extends JFrame {
     }
 
     // МЕТОДЫ ДЛЯ ПОДКИДЫВАНИЯ КАРТ.....
-    private void initializeThrowCardSystem() {
-        random = new Random();
-        cardImages = new ArrayList<>();
-
-        for (int i = 1; i <= 52; i++) {
-            cardImages.add(new ImageIcon("cards/card" + i + ".png"));
-        }
-    }
-
-    private void openThrowCardDialog() {
-        throwCardDialog = new JDialog(this, "Подкидывание карт", true);
-
-        cardLabel = new JLabel();
-        cardLabel.setHorizontalAlignment(JLabel.CENTER);
-        cardLabel.setPreferredSize(new Dimension(200, 300));
-
-        JButton throwButton = new JButton("Подкинуть карту");
-        throwButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                throwCard();
-            }
-        });
-
-        throwCardDialog.setLayout(new BorderLayout());
-        throwCardDialog.add(cardLabel, BorderLayout.CENTER);
-        throwCardDialog.add(throwButton, BorderLayout.SOUTH);
-
-        throwCardDialog.setTitle("Подкидывание карт");
-        throwCardDialog.setSize(300, 400);
-        throwCardDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        throwCardDialog.setLocationRelativeTo(this);
-
-        throwCardDialog.setVisible(true);
-    }
-
-    private void throwCard() {
-        if (!cardImages.isEmpty()) {
-            int randomIndex = random.nextInt(cardImages.size());
-            ImageIcon randomCard = cardImages.get(randomIndex);
-
-            cardLabel.setIcon(randomCard);
-            cardLabel.setText("Карта #" + (randomIndex + 1));
-            cardLabel.setVerticalTextPosition(JLabel.BOTTOM);
-            cardLabel.setHorizontalTextPosition(JLabel.CENTER);
-        } else {
-            cardLabel.setText("Изображения карт не загружены!");
-            cardLabel.setIcon(null);
-        }
-    }
+//    private void initializeThrowCardSystem() {
+//        random = new Random();
+//        cardImages = new ArrayList<>();
+//
+//        for (int i = 1; i <= 52; i++) {
+//            cardImages.add(new ImageIcon("cards/card" + i + ".png"));
+//        }
+//    }
+//
+//    private void openThrowCardDialog() {
+//        throwCardDialog = new JDialog(this, "Подкидывание карт", true);
+//
+//        cardLabel = new JLabel();
+//        cardLabel.setHorizontalAlignment(JLabel.CENTER);
+//        cardLabel.setPreferredSize(new Dimension(200, 300));
+//
+//        JButton throwButton = new JButton("Подкинуть карту");
+//        throwButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                throwCard();
+//            }
+//        });
+//
+//        throwCardDialog.setLayout(new BorderLayout());
+//        throwCardDialog.add(cardLabel, BorderLayout.CENTER);
+//        throwCardDialog.add(throwButton, BorderLayout.SOUTH);
+//
+//        throwCardDialog.setTitle("Подкидывание карт");
+//        throwCardDialog.setSize(300, 400);
+//        throwCardDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//        throwCardDialog.setLocationRelativeTo(this);
+//
+//        throwCardDialog.setVisible(true);
+//    }
+//
+//    private void throwCard() {
+//        if (!cardImages.isEmpty()) {
+//            int randomIndex = random.nextInt(cardImages.size());
+//            ImageIcon randomCard = cardImages.get(randomIndex);
+//
+//            cardLabel.setIcon(randomCard);
+//            cardLabel.setText("Карта #" + (randomIndex + 1));
+//            cardLabel.setVerticalTextPosition(JLabel.BOTTOM);
+//            cardLabel.setHorizontalTextPosition(JLabel.CENTER);
+//        } else {
+//            cardLabel.setText("Изображения карт не загружены!");
+//            cardLabel.setIcon(null);
+//        }
+//    }
 
 
     private void addNewPlayer() {

@@ -2,9 +2,10 @@ package currencyConverter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CurrencyConverter {
-
 
     String[][] currency = {
             {"USD"},
@@ -25,15 +26,17 @@ public class CurrencyConverter {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Введите сумму которую хотели бы конвертировать");
         JTextField input, result;
+        JButton lastResult = new JButton("Конвертировать");
         input = new JTextField(15);
         result = new JTextField(15);
 
-        // Панель для кнопок
+        // Панель для кнопок конвертации
         JPanel buttonPanel = new JPanel();
 
         // Добавление места ввода
         panel.add(label);
         panel.add(input);
+        panel.add(lastResult);
         panel.add(result);
         input.setToolTipText("");
         result.setToolTipText("");
@@ -53,16 +56,12 @@ public class CurrencyConverter {
         gbc.fill = GridBagConstraints.BOTH;  // растягивается во всех направлениях
         converter.add(buttonPanel, gbc);
 
-
-
-
-
-        JButton USDEUR = new JButton("Доллар -> Евро");
-        JButton USDRUB = new JButton("Доллар -> Рубль");
-        JButton EURUSD = new JButton("Евро -> Доллар");
-        JButton EURRUB = new JButton("Евро -> Рубль");
-        JButton RUBUSD = new JButton("Рубль -> Доллар");
-        JButton RUBEUR = new JButton("Рубль -> Евро");
+        JButton USDEUR = new JButton("Доллар ➔ Евро");
+        JButton USDRUB = new JButton("Доллар ➔ Рубль");
+        JButton EURUSD = new JButton("Евро ➔ Доллар");
+        JButton EURRUB = new JButton("Евро ➔ Рубль");
+        JButton RUBUSD = new JButton("Рубль ➔ Доллар");
+        JButton RUBEUR = new JButton("Рубль ➔ Евро");
 
         buttonPanel.add(USDEUR);
         buttonPanel.add(USDEUR);
@@ -75,15 +74,20 @@ public class CurrencyConverter {
         converter.setVisible(true);
     }
 
+    public class PressButton implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
     public void Converter(){
         double USD = 76.91;
         double UER = 91.11;
         double RUB = 1;
-
     }
-
 
     public static void main(String[] args) {
     new CurrencyConverter();
+
     }
 }
