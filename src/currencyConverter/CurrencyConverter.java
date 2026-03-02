@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class CurrencyConverter {
+
+    private HashMap<String, Double> rates;
 
     String[][] currency = {
             {"USD"},
@@ -56,14 +59,90 @@ public class CurrencyConverter {
         gbc.fill = GridBagConstraints.BOTH;  // растягивается во всех направлениях
         converter.add(buttonPanel, gbc);
 
+        rates = new HashMap<>();
+        initRates();
+
         JButton USDEUR = new JButton("Доллар ➔ Евро");
         JButton USDRUB = new JButton("Доллар ➔ Рубль");
+        USDEUR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == USDEUR) {
+                    getExchangesRate("USD", "EUR");
+                    System.out.println("Доллар ➔ Евро");
+                } else if (e.getSource() == USDRUB) {
+                    getExchangesRate("USD", "RUB");
+                    System.out.println("Доллар ➔ Рубль");
+                }
+            }
+        });
+        USDRUB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == USDRUB) {
+                    getExchangesRate("USD", "RUB");
+                    System.out.println("Доллар ➔ Рубль");
+                } else if (e.getSource() == USDEUR) {
+                    getExchangesRate("USD", "EUR");
+                    System.out.println("Доллар ➔ Евро");
+                }
+            }
+        });
+
         JButton EURUSD = new JButton("Евро ➔ Доллар");
         JButton EURRUB = new JButton("Евро ➔ Рубль");
+        EURUSD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == EURUSD) {
+                    getExchangesRate("EUR", "USD");
+                    System.out.println("Евро ➔ Доллар");
+                } else if (e.getSource() == EURRUB) {
+                    getExchangesRate("EUR", "RUB");
+                    System.out.println("Евро ➔ Рубль");
+                }
+            }
+        });
+        EURRUB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == EURRUB) {
+                    getExchangesRate("EUR", "RUB");
+                    System.out.println("Евро ➔ Рубль");
+                } else if (e.getSource() == EURUSD) {
+                    getExchangesRate("EUR", "USD");
+                    System.out.println("Евро ➔ Доллар");
+                }
+            }
+        });
+
         JButton RUBUSD = new JButton("Рубль ➔ Доллар");
         JButton RUBEUR = new JButton("Рубль ➔ Евро");
+        RUBUSD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == RUBUSD) {
+                    getExchangesRate("RUB", "USD");
+                    System.out.println("Рубль ➔ Доллар");
+                } else if (e.getSource() == RUBEUR) {
+                    getExchangesRate("RUB", "EUR");
+                    System.out.println("Рубль ➔ Евро");
+                }
+            }
+        });
+        RUBEUR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == RUBEUR) {
+                    getExchangesRate("RUB", "EUR");
+                    System.out.println("Рубль ➔ Евро");
+                } else if (e.getSource() == RUBUSD) {
+                    getExchangesRate("RUB", "USD");
+                    System.out.println("Рубль ➔ Доллар");
+                }
+            }
+        });
 
-        buttonPanel.add(USDEUR);
         buttonPanel.add(USDEUR);
         buttonPanel.add(USDRUB);
         buttonPanel.add(EURUSD);
@@ -80,14 +159,21 @@ public class CurrencyConverter {
         }
     }
 
-    public void Converter(){
-        double USD = 76.91;
-        double UER = 91.11;
-        double RUB = 1;
+    public void initRates(){
+        rates.put("USD", 76.91);
+        rates.put("EUR", 91.11);
+        rates.put("RUB", 1.0);
+    }
+
+    private double getExchangesRate(String from, String to){
+        double fromRate = rates.get(from);
+        double toRate = rates.get(to);
+        return fromRate / toRate;
     }
 
     public static void main(String[] args) {
-    new CurrencyConverter();
+        new CurrencyConverter();
+
 
     }
 }
