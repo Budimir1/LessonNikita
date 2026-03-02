@@ -1,6 +1,6 @@
 package RPGGame;
 
 public interface Attacker {
-    public void attacker();
+    public void attacker(int damage);
 
 }
