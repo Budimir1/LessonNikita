@@ -1,25 +1,21 @@
 package RPGGame;
 
 public class Character {
-    private int health;
-    private int mana;
-    private int level;
-    private String name;
-    private Inventory inventory;
-    private Subclasses subclasses;
 
+    public String name;
+    public int level;
+    public int health;
+    public int mana;
 
-    public Character(int health, int mana, int level, String name, Inventory inventory, Subclasses subclasses) {
+    public Character(String name, int level, int health, int mana) {
         this.health = health;
         this.mana = mana;
         this.level = level;
         this.name = name;
-        this.inventory = inventory;
-        this.subclasses = subclasses;
     }
 
     @Override
     public String toString() {
-        return "Name" + name + "Subclasses" + subclasses + "Level" + level + "Health" + health + "Mana" + mana + "Inventory: "  + "\n" + inventory;
+        return "Name " + name + "\n" + "Level " + level + "\n" + "Health " + health + "\n" + "Mana " + mana;
     }
 }
