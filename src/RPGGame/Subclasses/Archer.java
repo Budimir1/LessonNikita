@@ -13,7 +13,7 @@ public class Archer extends Character implements Attacker {
     }
 
     @Override
-    public void attacker(int target) {
+    public void attacker(String target) {
         int damage = shot + 20;
         System.out.println(name + " стреляет из лука! "  + damage);
     }

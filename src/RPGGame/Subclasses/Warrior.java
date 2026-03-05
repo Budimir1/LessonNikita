@@ -12,8 +12,9 @@ public class Warrior extends Character implements Attacker {
     }
 
     @Override
-    public void attacker(int target) {
+    public void attacker(String target) {
         int damage = powerHit + 20;
         System.out.println(name + " атакует менчом! " + damage);
+        health -= damage;
     }
 }

@@ -14,7 +14,7 @@ public class Mage extends Character implements Attacker {
 
 
     @Override
-    public void attacker(int target) {
+    public void attacker(String target) {
         int damage = spellPower + 20;
         if (mana > 50) {
             mana -= 50;
