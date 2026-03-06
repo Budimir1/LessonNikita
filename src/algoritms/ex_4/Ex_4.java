@@ -33,13 +33,16 @@ public class Ex_4 {
         int n = array.length;
 
         if (n % 2 == 1) {
-            array[i + 1]
-        }
-        n = n / 2;
+            n = (n / 2) + 1;
+            System.out.println(n);
+        }else System.out.println(n - 1);
 
+        return n;
     }
 
     public static void main(String[] args) {
-        System.out.println(6 % 2);
+        int[] num = {3, 1, 2, 5, 4, 7, 6};
+        bubbleSort(num);
+        mediana(num);
     }
 }
