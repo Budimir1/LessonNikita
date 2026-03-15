@@ -6,4 +6,6 @@ package algoritms.ex_1;
      */
 
 public class Ex_1 {
+//        int num1 = array[0];
+//        int numLast = array[-1];
 }
