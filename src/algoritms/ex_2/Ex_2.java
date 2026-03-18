@@ -30,15 +30,19 @@ public class Ex_2 {
                 }
             }
         }
+        int result = maxSum[0];
+        for (int i = 1; i < totalSum; i++) {
+            if (maxSum[i] > result) {
+                result = maxSum[i];
+            }
+        }
+        return result;
 
-
-        return 0;
     }
 
     public static void main(String[] args) {
         int[] number = {1, 20, 2, 4, 26, 7, 4, 32, 2, 134, 343};
-        dinamic(number);
-        System.out.println(number);
+        System.out.println(dinamic(number));
     }
 
 
