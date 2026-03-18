@@ -10,7 +10,6 @@ public class Ex_3 {
 }
 
 
-
 /**
  * public static int deikstr (int[] array){
  *
