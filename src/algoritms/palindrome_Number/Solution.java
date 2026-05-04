@@ -6,6 +6,7 @@ class Solution {
         for (int i = 0; i < n.length(); i++){
             char right = n.charAt(n.length() - i -1);
         }
+
         return true;
     }
 

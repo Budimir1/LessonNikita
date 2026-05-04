@@ -1,7 +1,111 @@
 package Test;
 
+import java.util.function.IntUnaryOperator;
 
+public class ComplexMath {
+    public static int complex_math(int n, int x, int y) {
+        // базовые операции
+        int add = x + y;
+        int sub = x - y;
+        int mul = x * y;
 
+        // защита от деления на ноль
+        double div = y != 0 ? (double) x / y : 0;
+
+        // степень
+        double power = Math.pow(x, 2) + Math.pow(y, 3);
+
+        // факториал
+        IntUnaryOperator factorial = new IntUnaryOperator() {
+            public int applyAsInt(int k) {
+                if (k <= 1)
+                    return 1;
+                return k * applyAsInt(k - 1);
+            }
+        };
+        int fact = factorial.applyAsInt(n);
+
+        // фибоначчи
+        IntUnaryOperator fibonacci = new IntUnaryOperator() {
+            public int applyAsInt(int k) {
+                if (k <= 1)
+                    return k;
+                return applyAsInt(k - 1) + applyAsInt(k - 2);
+            }
+        };
+        int fib = fibonacci.applyAsInt(n);
+
+        // итоговая формула
+        double result = add + sub + mul + div + power + fact + fib;
+
+        return (int) result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(complex_math(5, 3, 2));
+    }
+}
+
+//import java.util.Stack;
+//
+//class Test{
+//    public class ListNode{
+//        int val;
+//         ListNode next;
+//         ListNode() {}
+//         ListNode(int val) {
+//             this.val = val;
+//         }
+//         ListNode(int val, ListNode next) {
+//             this.val = val;
+//             this.next = next;
+//         }
+//    }
+////    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+////        Stack<Character> stack = new Stack<>();
+////// стек мап и лист
+////
+////    }
+//
+//
+//
+//
+//    public static void main(String[] args) {
+//        String strs = "([{}])";
+//
+//    }
+//}
+
+//    public static boolean isValid(String s) {
+//        Stack<Character> stack = new Stack<>();
+//
+//        for (char c: s.toCharArray()) {
+//
+//            if (c == '(' || c == '[' || c == '{') {
+//                stack.push(c);
+//            } else if (c == ')' && !stack.empty() && stack.peek() == '(') {
+//                stack.pop();
+//            }else if (c == ']' && !stack.empty() && stack.peek() == '[') {
+//                stack.pop();
+//            }else if (c == '}' && !stack.empty() && stack.peek() == '{') {
+//                stack.pop();
+//            }
+//            else return false;
+//        }
+//        return stack.isEmpty();
+//    }
+
+//    public static String longestCommonPrefix(String[] strs) {
+//        for (int i = 0; i < strs[0].length(); i++){
+//            char current = strs[0].charAt(i);
+//            for (int j = 1; j < strs.length; j++){
+//                if (i == strs[j].length() || strs[j].charAt(i) != current){
+//                    return strs[0].substring(0, i);
+//                }
+//            }
+//        }
+//        return strs[0];
+//    }
 //public class Solution {
 //    public int findEquilibriumIndex(int[] nums) {
 //
