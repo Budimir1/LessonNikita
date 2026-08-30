@@ -5,10 +5,10 @@ public class EconomyTaxi extends BaseCabOrder{
     private int distanceKm;
     private double pricePerKm;
     private boolean isNightTime;
-    private int passengersCount;
+    private double passengersCount;
     private double finalPrice = 0;
 
-    public EconomyTaxi(String tariffCategory, int distanceKm, double pricePerKm, boolean isNightTime, int passengersCount) {
+    public EconomyTaxi(String tariffCategory, int distanceKm, double pricePerKm, boolean isNightTime, double passengersCount) {
         super(tariffCategory);
         if(distanceKm < 0){
             throw new IllegalArgumentException("Поездка не может быть меньше 0 км");
@@ -25,21 +25,25 @@ public class EconomyTaxi extends BaseCabOrder{
         this.passengersCount = passengersCount;
     }
 
+    public double finalPriceStart(){
+        finalPrice = distanceKm * pricePerKm;
+        return finalPrice;
+    }
     public double calculationConditionsNight(){
         if(isNightTime){
-            finalPrice = (distanceKm * pricePerKm) + ((distanceKm * pricePerKm) * 0.25);
+            finalPrice = ((distanceKm * pricePerKm) * 0.25);
         }
         return finalPrice;
     }
     public double calculationConditionsDistanceKm(){
-        if(passengersCount > 3){
-            finalPrice = (distanceKm * pricePerKm) + ((distanceKm * pricePerKm) * 0.10);
+        if(distanceKm > 30){
+            finalPrice =((distanceKm * pricePerKm) * 0.10);
         }
         return finalPrice;
     }
     public double calculationConditionsPassengersCount(){
-        if(distanceKm > 30){
-            finalPrice = (distanceKm * pricePerKm) - ((distanceKm * pricePerKm) * 0.10);
+        if(passengersCount > 3){
+            finalPrice = ((distanceKm * pricePerKm) * 0.10);
         }
         return finalPrice;
     }
@@ -47,7 +51,7 @@ public class EconomyTaxi extends BaseCabOrder{
 
     @Override
     public double calculateFare(){
-        return finalPrice = calculationConditionsNight() + calculationConditionsDistanceKm() + calculationConditionsPassengersCount() - ((distanceKm * pricePerKm) * 2);
+        return finalPrice = finalPriceStart() + calculationConditionsNight() - calculationConditionsDistanceKm() + calculationConditionsPassengersCount();
     }
     @Override
     public int getDistanceKm(){
