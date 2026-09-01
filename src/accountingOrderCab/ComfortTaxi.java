@@ -1,6 +1,6 @@
 package accountingOrderCab;
 
-public class ComfortTaxi extends BaseCabOrder{
+public class ComfortTaxi extends BaseCabOrder implements CabOrder{
     private int distanceKm;
     private double pricePerKm;
     private boolean hasChildSeat;

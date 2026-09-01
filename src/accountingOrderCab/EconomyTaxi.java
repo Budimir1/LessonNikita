@@ -1,6 +1,6 @@
 package accountingOrderCab;
 
-public class EconomyTaxi extends BaseCabOrder{
+public class EconomyTaxi extends BaseCabOrder implements CabOrder{
 
     private int distanceKm;
     private double pricePerKm;
@@ -37,7 +37,7 @@ public class EconomyTaxi extends BaseCabOrder{
     }
     public double calculationConditionsDistanceKm(){
         if(distanceKm > 30){
-            finalPrice =((distanceKm * pricePerKm) * 0.10);
+            finalPrice = (distanceKm * pricePerKm) * 0.10;
         }
         return finalPrice;
     }
@@ -51,7 +51,8 @@ public class EconomyTaxi extends BaseCabOrder{
 
     @Override
     public double calculateFare(){
-        return finalPrice = finalPriceStart() + calculationConditionsNight() - calculationConditionsDistanceKm() + calculationConditionsPassengersCount();
+        finalPrice = finalPriceStart() + calculationConditionsNight() - calculationConditionsDistanceKm() + calculationConditionsPassengersCount();
+        return finalPrice;
     }
     @Override
     public int getDistanceKm(){
