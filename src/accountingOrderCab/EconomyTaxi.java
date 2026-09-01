@@ -30,28 +30,23 @@ public class EconomyTaxi extends BaseCabOrder implements CabOrder{
         return finalPrice;
     }
     public double calculationConditionsNight(){
-        if(isNightTime){
-            finalPrice = ((distanceKm * pricePerKm) * 0.25);
-        }
-        return finalPrice;
-    }
-    public double calculationConditionsDistanceKm(){
-        if(distanceKm > 30){
-            finalPrice = (distanceKm * pricePerKm) * 0.10;
-        }
-        return finalPrice;
-    }
-    public double calculationConditionsPassengersCount(){
-        if(passengersCount > 3){
-            finalPrice = ((distanceKm * pricePerKm) * 0.10);
-        }
-        return finalPrice;
+        return isNightTime ? (distanceKm * pricePerKm) * 0.25 : 0;
     }
 
+    public double calculationConditionsDistanceKm(){
+        return distanceKm > 30 ? (distanceKm * pricePerKm) * 0.10 : 0;
+    }
+
+    public double calculationConditionsPassengersCount(){
+        return passengersCount > 3 ? (distanceKm * pricePerKm) * 0.10 : 0;
+    }
 
     @Override
     public double calculateFare(){
-        finalPrice = finalPriceStart() + calculationConditionsNight() - calculationConditionsDistanceKm() + calculationConditionsPassengersCount();
+        finalPrice = finalPriceStart()
+                + calculationConditionsNight()
+                - calculationConditionsDistanceKm()
+                + calculationConditionsPassengersCount();
         return finalPrice;
     }
     @Override

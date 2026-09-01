@@ -9,13 +9,13 @@ public class CargoTaxi extends BaseCabOrder implements CabOrder{
 
     public CargoTaxi(String tariffCategory, int distanceKm, double pricePerKm, double cargoWeightKg, boolean needsLoaders) {
         super(tariffCategory);
-        if (distanceKm > 0){
+        if (distanceKm < 0){
             throw new IllegalArgumentException(" ");
         }
-        if (pricePerKm > 0){
+        if (pricePerKm < 0){
             throw new IllegalArgumentException("");
         }
-        if (cargoWeightKg > 0){
+        if (cargoWeightKg < 0){
             throw new IllegalArgumentException("");
         }
         this.distanceKm = distanceKm;
@@ -29,16 +29,10 @@ public class CargoTaxi extends BaseCabOrder implements CabOrder{
         return finalPrice;
     }
     public double calculationConditionsNight(){
-        if(needsLoaders){
-            finalPrice += 300;
-        }
-        return finalPrice;
+        return needsLoaders ? + 300 :0;
     }
     public double calculationConditionsDistanceKm(){
-        if(distanceKm >= 120){
-            finalPrice = (distanceKm * pricePerKm) * 0.12;
-        }
-        return finalPrice;
+        return distanceKm >= 120 ? (distanceKm * pricePerKm) * 0.12 :0;
     }
     public double calculationcargoWeightKg(){
         if(cargoWeightKg > 500){
@@ -46,12 +40,16 @@ public class CargoTaxi extends BaseCabOrder implements CabOrder{
         } else if (cargoWeightKg > 200) {
             finalPrice = (distanceKm * pricePerKm) * 0.2;
         }
-        return finalPrice;
+        return 0;
     }
 
     @Override
     public double calculateFare(){
-        return finalPrice = finalPriceStart() +calculationConditionsNight() + calculationcargoWeightKg() - calculationConditionsDistanceKm();
+        finalPrice = finalPriceStart()
+                + calculationConditionsNight()
+                + calculationcargoWeightKg()
+                - calculationConditionsDistanceKm();
+        return finalPrice;
     }
     @Override
     public int getDistanceKm(){

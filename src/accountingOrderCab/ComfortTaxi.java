@@ -9,13 +9,13 @@ public class ComfortTaxi extends BaseCabOrder implements CabOrder{
 
     public ComfortTaxi(String tariffCategory, int distanceKm, double pricePerKm, boolean hasChildSeat, int waitingMinutes) {
         super(tariffCategory);
-        if(distanceKm > 0) {
+        if(distanceKm < 0) {
             throw new IllegalArgumentException("Поездка не может быть меньше 0 км");
         }
-        if(pricePerKm > 0) {
+        if(pricePerKm < 0) {
             throw new IllegalArgumentException("Поездка не может стоить меньше 0 рублей");
         }
-        if(waitingMinutes >= 0) {
+        if(waitingMinutes <= 0) {
             throw new IllegalArgumentException("Не очень понятно, но очень интересно");
         }
         this.distanceKm = distanceKm;
@@ -30,17 +30,11 @@ public class ComfortTaxi extends BaseCabOrder implements CabOrder{
     }
 
     public double calculationHasChildSeat(){
-        if(hasChildSeat){
-        finalPrice += finalPriceStarting();
-        }
-        return finalPrice;
+        return hasChildSeat ? (distanceKm * pricePerKm) * 2 :0;
     }
 
     public double calculationWaitingMinutes(){
-        if(waitingMinutes > 5){
-            finalPrice = (waitingMinutes - 5) * 10;
-        }
-        return finalPrice;
+        return waitingMinutes > 5 ? (waitingMinutes - 5) * 10 :0;
     }
 
     public double calculationDistanceKm(){
@@ -48,13 +42,16 @@ public class ComfortTaxi extends BaseCabOrder implements CabOrder{
             finalPrice += 200;
         } else if (distanceKm >= 50) {
             finalPrice -= ((distanceKm * pricePerKm) * 0.15);
-        }
-        return finalPrice;
+        }return 0;
     }
 
     @Override
     public double calculateFare(){
-        return finalPrice = finalPriceStarting() + calculationHasChildSeat() + calculationWaitingMinutes() + calculationDistanceKm();
+        finalPrice = finalPriceStarting()
+                + calculationHasChildSeat()
+                + calculationWaitingMinutes()
+                + calculationDistanceKm();
+        return finalPrice;
     }
 
     @Override

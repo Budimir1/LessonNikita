@@ -9,7 +9,7 @@ public class Main {
         };
 
         for (CabOrder c : cabOrders){
-            System.out.println(c.getTariffCategory() + " Тариф " + "\n" + c.getDistanceKm() + " Километраж " + "\n" + c.calculateFare() + " Итоговая цена");
+            System.out.println(" Тариф: " + c.getTariffCategory() +  "\n" + " Километраж: " + c.getDistanceKm() +  "\n" + " Итоговая цена: " + c.calculateFare() + "\n");
         }
     }
 
